@@ -1,0 +1,15 @@
+Chapter 14 & 16 in CS 1302
+
+-Control: A.K.A widgets is an graphical icon that is diplayed on a Gui. The Gui on  the right has the following controls: button, text boxes, and labels. 
+
+-Event Handler: is a piece of code that runs in response to a user interaction with a Gui. When a button is pressed a button event handler is called to compute.
+
+-Pane: is a way to group controls. It is a logical structure defined at the programming level that is used to layout controls. The predecessor of JavaFX is Swing which utilized 
+a JPanel(or just Panel). 
+
+-Nested Panes: Panes can be nested to build more intricate GUIs. 
+
+Java is on its third iteration of API's to support event driven programming. AWT was first, followed by Swing, and now we use JavaFX. 
+
+-A label is a subclass of Control that simply displays (non-editable) text (and optionally a graphic). 
+One contructor accepts the text that you want to display. 

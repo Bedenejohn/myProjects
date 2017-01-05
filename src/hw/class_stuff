@@ -1,0 +1,32 @@
+Binary search(list, key){
+	1.Find middle Item
+	2.If key=middle
+		3.return middle
+	4.Else if key<middle
+		5.BinarySearch(leftSublist, key)
+	6.Else
+		7.BinarySearch(rightSublist, key)
+}
+
+LeftSubList: the elements form low to high = mid - 1
+
+RightSubList: the elements form low to high = mid + 1
+
+
+public static int binarySearch(int[] vals, int key){
+	return binarySearch(vals, key, vals.length-1);
+}
+private static int binarySearch(int[]vals, int key, int low, int high){
+	if(low > high)
+		return -(low+1);
+	else{
+		int mid = (low + high) / 2;
+		
+		if(key < vals[mid])
+			return binarySearch(vals, key, low, mid-1);
+		else if(key > vals[mid])
+			return binarySearch(vals, key, mid+1, high);
+		else
+			return mid;
+	}
+}
