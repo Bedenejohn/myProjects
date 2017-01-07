@@ -1,5 +1,6 @@
 package games;
 
+import java.util.*;
 
 public class ChessBoard 
 {
@@ -7,35 +8,88 @@ public class ChessBoard
 	public ChessBoard(int x, int y) 
 	{
 		coors = new Object [8][8];
-		//coors[8][0] = new Rook("white", true);
-		for(int i = 0; i < coors.length; i++)
+		//This is the pieces for the white side of the board
+		for(int i = 0; i < 2; i++)
 		{
-			Piece pawn = new Pawn("white", true);
-			coors[i][1] = pawn;
-			
-			if(coors[i][i] == coors[0][0] || coors[i][i] == coors[0][7]){
-				Piece rook = new Rook("white", true);
-				coors[01][0] = rook;
+			for(int j = 0; j < 8; j++)
+			{
+				if(i == 1){
+					Piece pawn = new Pawn("white", true);
+					coors[j][i] = pawn;
+				}
+				else{
+				if(j == 0){
+					Piece rook = new Rook("white", true);
+					Piece rookBlack = new Rook("white", true);
+					coors[0][0] = rook;
+					coors[7][0] = rookBlack;
+				}
+				if(j == 1){
+					Piece knight = new Knight("white", true);
+					Piece knightBlack = new Knight("white", true);
+					coors[1][0] = knight;
+					coors[6][0] = knightBlack;
+				}
+				if(j == 2){
+					Piece bishop = new Bishop("white", true);
+					Piece bishopBlack = new Bishop("white", true);
+					coors[2][0] = bishop;
+					coors[5][0] = bishopBlack;
+				}
+				if(j == 3){
+					Piece queen =  new Queen("white", true);
+					coors[3][0] = queen;
+				}
+				if(j == 4){
+					Piece king = new King("white", true);
+					coors[4][0] = king;
+				}
+				}
 			}
-			if(coors[i][i] == coors[0][0]){
-				Piece rook = new Rook("white", true);
-				coors[i][i] = rook;
-			}
-			if(coors[i][i] == coors[0][1]){
-				Piece knight = new Knight("white", true);
-				coors[i][i] = knight;
-			}
-			if(coors[i][i] == coors[0][2]){
-				Piece bishop = new Bishop("white", true);
-				coors[i][i] = bishop;
-			}
-			if(coors[i][i] == coors[0][3]){
-				Piece queen =  new Queen("white", true);
-				coors[i][i] = queen;
-			}
-			
 		}
+				
 		
+		for(int i = 6; i < 8; i++)
+		{
+			for(int j = 0; j < 8; j++)
+			{
+				if(i ==6)
+				{
+					Piece pawn = new Pawn("black", true);
+					coors[j][i] = pawn;
+				}
+				else
+				{
+					if(j == 0){
+						Piece rook = new Rook("black", true);
+						Piece rookBlack = new Rook("black", true);
+						coors[0][7] = rook;
+						coors[7][7] = rookBlack;
+					}
+					if(j == 1){
+						Piece knight = new Knight("black", true);
+						Piece knightBlack = new Knight("black", true);
+						coors[1][7] = knight;
+						coors[6][7] = knightBlack;
+					}
+					if(j == 2){
+						Piece bishop = new Bishop("black", true);
+						Piece bishopBlack = new Bishop("black", true);
+						coors[2][7] = bishop;
+						coors[5][7] = bishopBlack;
+					}
+					if(j == 3){
+						Piece queen =  new Queen("black", true);
+						coors[3][7] = queen;
+					}
+					if(j == 4)
+					{
+						Piece king = new King("black", true);
+						coors[4][7] = king;
+					}
+				}
+			}
+		}
 	}
 		
 	
@@ -47,134 +101,166 @@ public class ChessBoard
 
 }
 
-abstract class Piece 
-{
-	//This is my super Piece object that has all of the basic identifiers for a chess piece.
-	abstract public void move(int up, int down);
-	String color;
-	boolean state;
-	int x;
-	int y;
-	public int getX(){
-		return x;
+	abstract class Piece {
+		//This is my super Piece object that has all of the basic identifiers for a chess piece.
+		abstract ArrayList<Integer> move(int up, int down);
+		String color;
+		boolean state;
+		int x;
+		int y;
+		public int getX()
+		{
+			return x;
+		}
+		public int getY()
+		 {
+			return y;
+		}
+		/**
+		 * @return the color
+		 */
+		public String getColor() {
+			return color;
+		}
+		
 	}
-	public int getY(){
-		return y;
+	
+	class Bishop extends Piece {
+			int x;
+			int y;
+			boolean state;
+			String color;
+			public Bishop(String c, boolean s)
+			{
+				this.color = c;
+				this.state = s;
+			}
+		public ArrayList<Integer> move(int up, int down) 
+		{
+			return null;
+					
+		}
+		
 	}
-}
-
-class Bishop extends Piece {
+	
+	class Queen extends Piece{
+	
 		int x;
 		int y;
 		boolean state;
 		String color;
-		public Bishop(String c, boolean s)
+		public Queen(String c, boolean s)
 		{
 			this.color = c;
 			this.state = s;
 		}
-	public void move(int up, int down) 
+		@Override
+		public ArrayList<Integer> move(int up, int down) 
+		{
+			return null;
+			
+		}	
+	}
+	
+	class King extends Piece
 	{
+		int x;
+		int y;
+		boolean state;
+		String color;
+		public King(String c, boolean s)
+		{
+			this.color = c;
+			this.state = s;
+		}
+		@Override
+		public ArrayList<Integer> move(int up, int down) 
+		{
+			return null;
+					
+		}
+	}
+	
+	class Pawn extends Piece
+	{
+	
+		int x;
+		int y;
+		boolean state;
+		String color;
+		boolean firstMove;
+		public Pawn(String c, boolean s)
+		{
+			this.color = c;
+			this.state = s;
+			this.firstMove = true;
+		}
+		
+		public ArrayList<Integer> move(int x, int y)
+		{
+		//This method contains every possible move a pawn can make.
+			ArrayList<Integer> moves = new ArrayList<>();
+			if(firstMove){
+				moves.add((x * 10) + y + 2);
+				firstMove = false;
+			}
+			moves.add((x * 10) + y + 1);
+						
+			if(x != 0){
+					moves.add((x - 1) * 10 + (y + 1));
+					
+			}
+			if(x != 7){
+					moves.add((x + 1) * 10 + (y + 1));
+			}
+				return moves;
 				
 	}
-	
-}
-
-class Queen extends Piece{
-
-	int x;
-	int y;
-	boolean state;
-	String color;
-	public Queen(String c, boolean s)
-	{
-		this.color = c;
-		this.state = s;
-	}
-	@Override
-	public void move(int up, int down) 
-	{
-				
-	}	
-}
-
-class King extends Piece
-{
-	int x;
-	int y;
-	boolean state;
-	String color;
-	public King(String c, boolean s)
-	{
-		this.color = c;
-		this.state = s;
-	}
-	@Override
-	public void move(int up, int down) 
-	{
-				
-	}
-}
-
-class Pawn extends Piece
-{
-
-	int x;
-	int y;
-	boolean state;
-	String color;
-	public Pawn(String c, boolean s)
-	{
-		this.color = c;
-		this.state = s;
-	}
-	@Override
-	public void move(int up, int down)
-	{
-				
-	}
-	
-
-}
-
-class Knight extends Piece
-{
-	int x;
-	int y;
-	boolean state;
-	String color;
-	public Knight(String c, boolean s)
-	{
-		this.color = c;
-		this.state = s;
-	}
-	@Override
-	public void move(int up, int down) 
-	{
-				
-	}
-
-	
-	
-}
-
-class Rook extends Piece
-{
-	int x;
-	int y;
-	boolean state;
-	String color;
-	public Rook(String c, boolean s)
-	{
-		this.color = c;
-		this.state = s;
-	}
-	@Override
-	public void move(int up, int down)
-	{
+			
+		
 	
 	}
 	
-}
+	class Knight extends Piece
+	{
+		int x;
+		int y;
+		boolean state;
+		String color;
+		public Knight(String c, boolean s)
+		{
+			this.color = c;
+			this.state = s;
+		}
+		@Override
+		public ArrayList<Integer> move(int up, int down) 
+		{
+			return null;
+					
+		}
+	
+		
+		
+	}
+	
+	class Rook extends Piece
+	{
+		int x;
+		int y;
+		boolean state;
+		String color;
+		public Rook(String c, boolean s)
+		{
+			this.color = c;
+			this.state = s;
+		}
+		@Override
+		public ArrayList<Integer> move(int up, int down)
+		{
+			return null;
+		
+		}
+		
+	}
 
 
